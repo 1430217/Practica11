@@ -114,7 +114,7 @@
 
             <li>
               <a href="index.php?action=perfil">
-                <small class="label pull-left bg-blue"><i class="glyphicon glyphicon glyphicon-book fa-fw fa-2x"></i> </small>
+                <small class="label pull-left bg-blue"><i class="glyphicon glyphicon glyphicon-user fa-fw fa-2x"></i> </small>
                 <span>Perfil</span>
               </a>
             </li>
