@@ -1,6 +1,7 @@
 <?php 
   $mvc = new MvcController();
   session_start();
+  $usuario = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -76,7 +77,7 @@
           <img src="views/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Nombre</p>
+          <p><?php echo $usuario; ?></p>
         </div>
       </div>
 
@@ -106,6 +107,15 @@
               <a href="index.php?action=listaLibros">
                 <small class="label pull-left bg-blue"><i class="glyphicon glyphicon glyphicon-book fa-fw fa-2x"></i> </small>
                 <span>Listado de libros</span>
+              </a>
+            </li>
+
+            
+
+            <li>
+              <a href="index.php?action=perfil">
+                <small class="label pull-left bg-blue"><i class="glyphicon glyphicon glyphicon-book fa-fw fa-2x"></i> </small>
+                <span>Perfil</span>
               </a>
             </li>
 

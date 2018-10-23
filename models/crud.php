@@ -73,6 +73,32 @@
             $stmt->close();
         }
 
+
+        /* Funcion de la base de datos para editar el perfil del usuario */
+        public function actualizarUsuario($usuario, $tabla){
+		
+            $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET name = :name, username = :username, password = :password WHERE id = :id");		
+            $stmt->bindParam(':name', $usuario['name'], PDO::PARAM_STR);
+            $stmt->bindParam(':username', $usuario['username'], PDO::PARAM_STR);
+            $stmt->bindParam(':password', $usuario['password'], PDO::PARAM_STR);
+            $stmt->bindParam(':id', $usuario['id'], PDO::PARAM_INT);
+            
+            if ($stmt->execute()) 
+                return 'success';
+            else 
+                return 'error';
+            $stmt->close();
+        }
+
+        /** Traer la información del usuario */
+        public function getUsuario($id, $tabla){
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla where id = :id");
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch();
+            $stmt->close();
+        }
+
 		//Funcion para borrar un libro 
 		public function deleteLibro($id, $tabla){
 

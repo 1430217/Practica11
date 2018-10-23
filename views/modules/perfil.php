@@ -7,14 +7,13 @@
 ?>
 
 <div class="page-header">
-  <h1>Editar libro <small>En esta pagina se podrá editar la información del libro.</small></h1>
+  <h1>Perfil de usuario <small>En esta pagina se podrá editar la información del perfil.</small></h1>
 </div>
 
 <form method="POST">
 	<?php 
 		$editar = new MvcController();
 		$editar->getUsuario(); //Se llama la funcion del controller para buscar un libro
-		$editar->actualizarLibroController(); //Funcion para actualizar el libro
+		$editar->actualizarUsuarioController(); //Funcion para actualizar el libro
 	?>
 </form>
-

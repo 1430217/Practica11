@@ -106,7 +106,7 @@
                 $stmt = Datos::getLibro($id, 'book');
                 echo '
                     <input type="hidden" name="id" value="'.$stmt["id"].'">
-                    
+
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" value=" '.$stmt["title"].' " name="title">
                         <span class="glyphicon glyphicon-text-size form-control-feedback"></span>
@@ -135,14 +135,15 @@
         }
         public function actualizarLibroController(){
             if (isset($_POST['id'])) {
-                $libro = array(
+
+                $usuario = array(
                     'id' => $_POST['id'],
                     'title' => $_POST['title'],
                     'author' => $_POST['author'],
                     'description' => $_POST['description']
                 );
 
-                $stmt = Datos::actualizarLibro($libro, 'book');
+                $stmt = Datos::actualizarUsuario($usuario, 'user');
                 if($stmt == 'success')
                     header('Location: index.php?action=cambio');
                 else 
@@ -162,6 +163,62 @@
                     echo 'Error al eliminar el libro';
                 
             }
+        }
+
+
+
+        public function actualizarUsuarioController(){
+            if (isset($_POST['id'])) {
+                $contrasena = password_hash($_POST['password'], PASSWORD_DEFAULT); //cifrado de la contraseña
+
+                $usuario = array(
+                    'id' => $_POST['id'],
+                    'name' => $_POST['name'],
+                    'username' => $_POST['username'],
+                    'password' => $contrasena
+                );
+
+                $stmt = Datos::actualizarUsuario($usuario, 'user');
+                if($stmt == 'success')
+                    header('Location: index.php?action=update');
+                else 
+                    echo 'Error al actualizar';
+                
+            }
+        }
+
+        public function getUsuario(){
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $stmt = Datos::getUsuario($id, 'user');
+                echo '
+                    <input type="hidden" name="id" value="'.$stmt["id"].'">
+
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" value="'.$stmt["name"].'" name="name">
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" value="'.$stmt["username"].'" name="username">
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" value="'.$stmt["password"].'" name="password">
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-8">
+                        </div>
+                        <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Actualizar</button>
+                        </div>
+                    </div>
+                ';
+            }
+
         }
 
         /* Controller para imprimir el conteo de maestros (Ver en el dashboard) */
