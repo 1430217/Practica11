@@ -10,7 +10,7 @@
   <h1>Editar libro <small>En esta pagina se podrá editar la información del libro.</small></h1>
 </div>
 
-<form method="post">
+<form method="POST">
 	<?php 
 		$editar = new MvcController();
 		$editar->getlibro(); //Se llama la funcion del controller para buscar un libro

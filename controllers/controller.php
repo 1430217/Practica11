@@ -80,6 +80,7 @@
             }
         }
 
+        /* Imprimir en la tabla de los libros (Lista los libros enla base de datos)*/
         public function getLibrosController(){
             $stmt = Datos::getLibros('book');
 
@@ -98,11 +99,14 @@
 			}	
         }
 
+        /* Imprime los datos en un formulario del libro seleccionado para editar */
         public function getlibro(){
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 $stmt = Datos::getLibro($id, 'book');
                 echo '
+                    <input type="hidden" name="id" value="'.$stmt["id"].'">
+                    
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" value=" '.$stmt["title"].' " name="title">
                         <span class="glyphicon glyphicon-text-size form-control-feedback"></span>
@@ -114,14 +118,9 @@
                     </div>
 
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" value=" '.$stmt["description"].' " name="description">
-                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                    </div>
-
-                    <!-- <div class="form-group has-feedback">
                         <textarea class="form-control" cols="30" rows="10" name="description" >' .$stmt["description"]. '</textarea>
                         <span class="glyphicon glyphicon-comment form-control-feedback"></span>
-                    </div>   -->     
+                    </div>   
                     
                     <div class="row">
                         <div class="col-xs-8">

@@ -48,6 +48,7 @@
             $stmt->bindParam(':title', $libro['title'], PDO::PARAM_STR);
             $stmt->bindParam(':author', $libro['author'], PDO::PARAM_STR);
             $stmt->bindParam(':description', $libro['description'], PDO::PARAM_STR);
+            $stmt->bindParam(':id', $libro['id'], PDO::PARAM_INT);
             
             if ($stmt->execute()) 
                 return 'success';
